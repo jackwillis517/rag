@@ -1,4 +1,4 @@
-# p2 — RAG retrieval pipeline
+# RAG retrieval pipeline
 
 Retrieval-augmented generation experiments over two ingested books
 (_Let's Go Further_, _Google Cloud Run_): chunker variants, retriever
