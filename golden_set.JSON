@@ -1,0 +1,402 @@
+[
+  {
+    "id": 1,
+    "category": "Cloud Run Runtime",
+    "question": "How much time does a Cloud Run container get to shut down cleanly after receiving SIGTERM?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 76,
+    "ground_truth_snippet": "You'll get 10 seconds to shut down. You should close database connections and flush buffers programmatically."
+  },
+  {
+    "id": 2,
+    "category": "Cloud Run Runtime",
+    "question": "Why is it unreliable to kick off a background thread after returning the HTTP response on Cloud Run?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 78,
+    "ground_truth_snippet": "On Cloud Run, because of throttling, this background thread might never complete."
+  },
+  {
+    "id": 3,
+    "category": "Cloud Run Runtime",
+    "question": "What happens to a container's CPU when it is not handling any requests?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 77,
+    "ground_truth_snippet": "If a container is not handling requests, your container will still get a slice of CPU time every now and then, but it's not enough to do meaningful work."
+  },
+  {
+    "id": 4,
+    "category": "Cloud Run Runtime",
+    "question": "What does setting concurrency to 1 mean for a Cloud Run service?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 80,
+    "ground_truth_snippet": "Every container will have only one request slot available, which means every request will have exclusive access to the container."
+  },
+  {
+    "id": 5,
+    "category": "Cloud Run Runtime",
+    "question": "What HTTP status code does Cloud Run return once the autoscaler hits the maximum number of containers?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 81,
+    "ground_truth_snippet": "When Cloud Run reaches the maximum limit, it will start returning requests with the HTTP 429 error status."
+  },
+  {
+    "id": 6,
+    "category": "Cloud Run Runtime",
+    "question": "What was the default Cloud Run concurrency value as of November 2020?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 82,
+    "ground_truth_snippet": "As of November 2020, the default concurrency is 250, and this default is most likely too high for your application."
+  },
+  {
+    "id": 7,
+    "category": "Cloud Run Runtime",
+    "question": "How can I make sure a warm container is always available so requests don't hit cold starts?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 83,
+    "ground_truth_snippet": "If you want to be sure there is always a container available for requests, you can set minimum instances: a setting that tells the autoscaler to always keep a certain number of containers ready."
+  },
+  {
+    "id": 8,
+    "category": "Cloud Run Runtime",
+    "question": "Is the Cloud Run container filesystem backed by disk, and how large can it get?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 85,
+    "ground_truth_snippet": "This means that every byte you write will end up using memory (the maximum was 4 GB as of October 2020)."
+  },
+  {
+    "id": 9,
+    "category": "Cloud Run Runtime",
+    "question": "Why is Cloud Functions a poor fit for highly concurrent web apps compared with Cloud Run?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 89,
+    "ground_truth_snippet": "Cloud Functions is not meant to serve highly concurrent workloads, such as web applications or APIs."
+  },
+  {
+    "id": 10,
+    "category": "Cloud Run Containers",
+    "question": "How does a multistage Dockerfile let you ship a small image with only the compiled binary?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 112,
+    "ground_truth_snippet": "The FROM line can be repeated in a Dockerfile. If you repeat it, the next line in the Dockerfile starts fresh with a new image (a new stage), and you can use COPY to pull in specific files from the previous image."
+  },
+  {
+    "id": 11,
+    "category": "Cloud SQL & Databases",
+    "question": "How does the Cloud SQL Proxy Server authenticate incoming connections?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 139,
+    "ground_truth_snippet": "The Cloud SQL Proxy Server authenticates incoming connections using Cloud IAM."
+  },
+  {
+    "id": 12,
+    "category": "Cloud SQL & Databases",
+    "question": "What rule of thumb is given for the optimal transaction concurrency on a relational database server?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 149,
+    "ground_truth_snippet": "a common heuristic is that it is a small multiple of the number of vCPUs of the machine."
+  },
+  {
+    "id": 13,
+    "category": "Cloud SQL & Databases",
+    "question": "How does limiting the maximum number of Cloud Run containers help protect a database from overload?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 152,
+    "ground_truth_snippet": "The scaling boundary of your Cloud Run service is the first control. It limits the maximum number of containers Cloud Run will add, which in turn limits the amount of HTTP requests that can be handled concurrently by a Cloud Run service."
+  },
+  {
+    "id": 14,
+    "category": "Cloud SQL & Databases",
+    "question": "When would you put PgBouncer in front of a Cloud SQL PostgreSQL instance?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 154,
+    "ground_truth_snippet": "you can benefit from using an external connection pool, such as PgBouncer, on a Compute Engine virtual machine in front of your PostgreSQL Cloud SQL instance."
+  },
+  {
+    "id": 15,
+    "category": "Cloud Run Networking & Sessions",
+    "question": "Why does a Cloud Run service need a VPC Connector to reach a Memorystore Redis instance?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 165,
+    "ground_truth_snippet": "However, Cloud Run is not part of the VPC. You'll need to create a VPC Connector and connect your Cloud Run service to it to reach private IPs from your container."
+  },
+  {
+    "id": 16,
+    "category": "Cloud Run Networking & Sessions",
+    "question": "Could session affinity be relied on to keep user session data inside a Cloud Run container?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 173,
+    "ground_truth_snippet": "If Cloud Run implements session affinity, it will be a best-effort implementation and will not be useful for storing session data in the containers."
+  },
+  {
+    "id": 17,
+    "category": "Cloud IAM & Authentication",
+    "question": "Which member do you bind to the Cloud Run invoker role to make a service publicly accessible?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 179,
+    "ground_truth_snippet": "The group that represents everyone on the internet is especially useful for the role of Cloud Run invoker: if you want to make a service publicly accessible, this is the member you should bind to."
+  },
+  {
+    "id": 18,
+    "category": "Cloud IAM & Authentication",
+    "question": "What powerful role does the default Cloud Run service account have, and why avoid it in production?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 183,
+    "ground_truth_snippet": "To make your first experience with Google Cloud frictionless, the default service account has a very powerful role: Project Editor."
+  },
+  {
+    "id": 19,
+    "category": "Cloud IAM & Authentication",
+    "question": "How long is an ID token valid when calling a private Cloud Run service?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 191,
+    "ground_truth_snippet": "The token has not expired (tokens are valid for one hour at most)"
+  },
+  {
+    "id": 20,
+    "category": "Cloud Tasks",
+    "question": "What counts as a successful task execution in Cloud Tasks, and what happens until then?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 205,
+    "ground_truth_snippet": "Cloud Tasks retries the HTTP request until it is successful (success is defined as an HTTP 2xx status response)."
+  },
+  {
+    "id": 21,
+    "category": "Cloud Tasks",
+    "question": "Which four settings control the retry backoff behavior of a Cloud Tasks queue?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 218,
+    "ground_truth_snippet": "the four retry configuration settings determine the intervals between each retry: minimum backoff, maximum backoff, maximum doublings, and the maximum number of attempts."
+  },
+  {
+    "id": 22,
+    "category": "Cloud Tasks",
+    "question": "Which Cloud Tasks settings cap the dispatch rate and the number of tasks running at once?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 219,
+    "ground_truth_snippet": "maxDispatchesPerSeconds sets the maximum rate, and maxConcurrentDispatches sets the maximum number of tasks that can be executed at the same time."
+  },
+  {
+    "id": 23,
+    "category": "Cloud Tasks",
+    "question": "How can you protect against a Cloud Tasks task being executed twice?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 221,
+    "ground_truth_snippet": "When you create the task, your app also persists a record in a database to track the task state. This allows your worker to mark the task in progress when it starts (preventing duplicate execution)."
+  },
+  {
+    "id": 24,
+    "category": "Terraform",
+    "question": "What does terraform plan compare in order to decide which changes to make?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 246,
+    "ground_truth_snippet": "To determine what needs to be done, Terraform will compare your configuration files with the Terraform state."
+  },
+  {
+    "id": 25,
+    "category": "Logging & Tracing",
+    "question": "Which HTTP header does the Google Frontend add to incoming requests to carry the trace ID?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 268,
+    "ground_truth_snippet": "The Google Frontend (GFE) adds a trace header (X-Cloud-Trace-Context) to all incoming requests"
+  },
+  {
+    "id": 26,
+    "category": "Knative & Portability",
+    "question": "Is Cloud Run simply a managed version of Knative Serving?",
+    "expected_source_file": "cloud_run.md",
+    "expected_chunk_index": 282,
+    "ground_truth_snippet": "Cloud Run is a compatible but completely separate and proprietary implementation of the same specification."
+  },
+  {
+    "id": 27,
+    "category": "Go JSON Handling",
+    "question": "How do you make Go's json.Decoder return an error when a request contains unknown fields?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 95,
+    "ground_truth_snippet": "Go's json.Decoder provides a DisallowUnknownFields() setting that we can use to generate an error when this happens."
+  },
+  {
+    "id": 28,
+    "category": "Go JSON Handling",
+    "question": "How do you reject oversized JSON request bodies in a Go handler?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 98,
+    "ground_truth_snippet": "If you try making a request to your POST /v1/movies endpoint with this file as the request body, the http.MaxBytesReader() check will kick in"
+  },
+  {
+    "id": 29,
+    "category": "Go Database Pooling",
+    "question": "What happens when a Go app exceeds PostgreSQL's default connection limit?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 131,
+    "ground_truth_snippet": "By default PostgreSQL has a hard limit of 100 open connections and, if this hard limit is hit under heavy load, it will cause our pq driver to return a \"sorry, too many clients already\" error."
+  },
+  {
+    "id": 30,
+    "category": "Go Database Pooling",
+    "question": "Is SetConnMaxLifetime an idle timeout for pooled connections?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 133,
+    "ground_truth_snippet": "This isn't an idle timeout. The connection will expire one hour after it was first created - not one hour after it last became idle."
+  },
+  {
+    "id": 31,
+    "category": "Go Migrations",
+    "question": "What are 'up' and 'down' migration files used for?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 141,
+    "ground_truth_snippet": "One file is the 'up' migration which contains the SQL statements necessary to implement the change, and the other is a 'down' migration which contains the SQL statements to reverse (or roll-back) the change."
+  },
+  {
+    "id": 32,
+    "category": "Go Migrations",
+    "question": "What state is the database in if a multi-statement SQL migration fails midway?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 150,
+    "ground_truth_snippet": "If the migration file which failed contained multiple SQL statements, then it's possible that the migration file was partially applied before the error was encountered."
+  },
+  {
+    "id": 33,
+    "category": "Go Concurrency Control",
+    "question": "How can two clients updating the same record at once be prevented from silently overwriting each other?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 196,
+    "ground_truth_snippet": "the simplest and cleanest approach in this case is to use a form of optimistic locking based on the version number in our movie record."
+  },
+  {
+    "id": 34,
+    "category": "Go Concurrency Control",
+    "question": "How does the API treat a PATCH request where a field is explicitly set to null?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 193,
+    "ground_truth_snippet": "In this case, our handler will ignore the field and treat it like it hasn't been supplied."
+  },
+  {
+    "id": 35,
+    "category": "Go Concurrency Control",
+    "question": "Why must you call defer cancel() after context.WithTimeout()?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 205,
+    "ground_truth_snippet": "The defer cancel() line is necessary because it ensures that the resources associated with our context will always be released"
+  },
+  {
+    "id": 36,
+    "category": "Go Filtering & Pagination",
+    "question": "How do page and page_size query parameters translate into SQL LIMIT and OFFSET?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 241,
+    "ground_truth_snippet": "LIMIT = page_size OFFSET = (page - 1) * page_size"
+  },
+  {
+    "id": 37,
+    "category": "Go Filtering & Pagination",
+    "question": "How can you compute the total number of filtered records for pagination metadata in a single query?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 244,
+    "ground_truth_snippet": "A neat way to do this is to adapt our existing SQL query to include a window function which counts the total number of filtered rows"
+  },
+  {
+    "id": 38,
+    "category": "Go Filtering & Pagination",
+    "question": "What does plainto_tsquery do to the search value in the movie title filter?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 232,
+    "ground_truth_snippet": "strips any special characters, and inserts the and operator"
+  },
+  {
+    "id": 39,
+    "category": "Go Filtering & Pagination",
+    "question": "Why create GIN indexes for the full-text search on movie titles?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 233,
+    "ground_truth_snippet": "it's sensible to use indexes to help avoid full table scans and avoid generating the lexemes for the title field every time the query is run."
+  },
+  {
+    "id": 40,
+    "category": "Go Concurrency",
+    "question": "Does the recoverPanic middleware catch panics raised inside a goroutine started by a handler?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 263,
+    "ground_truth_snippet": "our middleware will only recover panics that happen in the same goroutine that executed the recoverPanic() middleware."
+  },
+  {
+    "id": 41,
+    "category": "Go Concurrency",
+    "question": "How can you wait for background goroutines to finish before the application exits?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 335,
+    "ground_truth_snippet": "When you want to wait for a collection of goroutines to finish their work, the principal tool to help with this is the sync.WaitGroup type."
+  },
+  {
+    "id": 42,
+    "category": "Go Rate Limiting",
+    "question": "Which algorithm does the x/time/rate package implement for rate limiting?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 266,
+    "ground_truth_snippet": "This provides a tried-and-tested implementation of a token bucket rate limiter."
+  },
+  {
+    "id": 43,
+    "category": "Go Rate Limiting",
+    "question": "Does in-memory per-IP rate limiting still work when the API runs on several servers behind a load balancer?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 274,
+    "ground_truth_snippet": "Using this pattern for rate-limiting will only work if your API application is running on a single-machine."
+  },
+  {
+    "id": 44,
+    "category": "Go Graceful Shutdown",
+    "question": "What does http.Server.Shutdown() do when it is called?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 288,
+    "ground_truth_snippet": "Shutdown works by first closing all open listeners, then closing all idle connections, and then waiting indefinitely for connections to return to idle and then shut down."
+  },
+  {
+    "id": 45,
+    "category": "Go Authentication",
+    "question": "How are the secure user activation tokens generated in Go?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 343,
+    "ground_truth_snippet": "we'll create our activation tokens using Go's crypto/rand package and 128-bits (16 bytes) of entropy."
+  },
+  {
+    "id": 46,
+    "category": "Go Authentication",
+    "question": "What is the main advantage of stateful authentication tokens over stateless ones?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 370,
+    "ground_truth_snippet": "it's straightforward to revoke tokens on a per-token or per-user basis by deleting them from the database or marking them as expired."
+  },
+  {
+    "id": 47,
+    "category": "Go CORS",
+    "question": "How can you tell that an incoming OPTIONS request is a CORS preflight request?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 446,
+    "ground_truth_snippet": "preflight requests always have three components: the HTTP method OPTIONS, an Origin header, and an Access-Control-Request-Method header."
+  },
+  {
+    "id": 48,
+    "category": "Go Metrics & Security",
+    "question": "Why should the /debug/vars metrics endpoint not be publicly exposed?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 461,
+    "ground_truth_snippet": "these metrics provide very useful information to anyone who wants to perform a denial-of-service attack against your application"
+  },
+  {
+    "id": 49,
+    "category": "Go Build & Deploy",
+    "question": "How can you shrink the size of a compiled Go binary?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 509,
+    "ground_truth_snippet": "It's possible to reduce the binary size by around 25% by instructing the Go linker to strip the DWARF debugging information and symbol table from the binary."
+  },
+  {
+    "id": 50,
+    "category": "Go Build & Deploy",
+    "question": "How do you build a Linux binary from a Mac or Windows machine in Go?",
+    "expected_source_file": "letsgo_further.md",
+    "expected_chunk_index": 510,
+    "ground_truth_snippet": "you can specify the operating system and architecture that you want to create the binary for by setting GOOS and GOARCH environment variables when running go build."
+  }
+]
